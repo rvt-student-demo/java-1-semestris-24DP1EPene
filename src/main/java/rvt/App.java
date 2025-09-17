@@ -12,6 +12,8 @@ public class App {
         double num_2 = Integer.valueOf(scanner.nextLine());
         System.out.print("Enter the third num: ");
         double num_3 = Integer.valueOf(scanner.nextLine());
-        System.out.println("Avarage of three nums = " + ((num + num_2 + num_3) / 3));
+        System.out.println("Average of three nums = " + ((num + num_2 + num_3) / 3));
+
+        scanner.close();
     }
 }
