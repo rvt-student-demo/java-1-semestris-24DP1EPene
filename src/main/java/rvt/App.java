@@ -1,12 +1,17 @@
 package rvt;
 
 public class App {
-    public static void printFromNumberToOne(int number) {
-        for (int i = number; i > 0; i--) {
-            System.out.println(i);
+    public static void divisibleByThreeInRange(int start, int end) {
+        if (start == 0) {
+            start++;
+        }
+        for (int i = start; i < end + 1; i++) {
+            if (i % 3 == 0) {
+                System.out.println(i);
+            }        
         }
     }
     public static void main(String[] args) {
-        printFromNumberToOne(5);
+        divisibleByThreeInRange(2, 10);
     }
 }
