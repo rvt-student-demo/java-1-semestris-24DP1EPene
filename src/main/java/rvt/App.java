@@ -1,27 +1,36 @@
 package rvt;
 
-import java.util.Scanner;
-
 public class App {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        int input;
-        int count = 0, even = 0, odd = 0;
-        double sum = 0;
-
-        System.out.println("Enter numbers:");
-        while ((input = Integer.valueOf(scanner.nextLine())) != -1) {
-            sum += input;
-            count += 1;
-            if (input % 2 == 0) {
-                even += 1;
-            }
-            else {
-                odd += 1;
-            }
+    public static void print_spaces(int number) {
+        System.out.print(" ".repeat(number));
+    }
+    public static void print_stars(int number) {
+        System.out.print("*".repeat(number));
+    }
+    public static void print_square(int length, int height,  int offset) {
+        for (int i = 0; i < height; i++) {
+            print_spaces(offset);
+            print_stars(length);
+            System.out.println();
         }
-        System.out.println(String.format("Thanks, bye bye!\nSum of numbers: %f\nAmount of numbers: %d\nThe avarage of numbers: %f\nEven and odd numbers: %d | %d", sum, count, sum / count, even, odd));
-        scanner.close();
+    }
+    public static void print_two_side_triangle(int height) {
+        height *= 2;
+        for (int i = 1; i < height; i += 2) {
+            print_spaces((height - i) / 2);
+            print_stars(i);
+            print_spaces((height - i) / 2);
+            System.out.println();
+        }
+    }
+    public static void print_christmass_tree(int height) {
+        print_two_side_triangle(height);
+        print_square(3, 2, ((1 + (height - 1) * 2) / 2) - 1);
+
+    }
+
+    public static void main(String[] args) {
+        print_christmass_tree(10);
     }
 }
