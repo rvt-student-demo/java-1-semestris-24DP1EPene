@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Chapter_19 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        exercise_3(scanner);
+        exercise_7(scanner);
         scanner.close();
         
     }
@@ -47,7 +47,32 @@ public class Chapter_19 {
         
         int low = Integer.valueOf(input(scanner, "Enter low: "));
         int high = Integer.valueOf(input(scanner, "Enter high: "));
-        double function_sum = low ;
+        int count = high - low + 1;
+        double function_sum = count * (low + high) / 2;
+        System.out.println(function_sum);
+
+    }
+    public static void exercise_5(Scanner scanner) {
+        
+        String word = input(scanner, "Enter the word: ");
+        for (int i = 0; i < word.length(); i++) {
+            System.out.println(word);
+        }
+
+    }
+    public static void exercise_6(Scanner scanner) {
+        
+        String word = input(scanner, "Enter the word: ");
+        String second_word = input(scanner, "Enter the second word: ");
+        System.out.println(word + ".".repeat(30 - word.length() - second_word.length()) + second_word);
+
+    }
+    public static void exercise_7(Scanner scanner) {
+        
+        String word = input(scanner, "Enter the word: ");
+        for (int i = 0; i < word.length(); i++) {
+            System.out.println(word.charAt(i));
+        }
 
     }
 }
