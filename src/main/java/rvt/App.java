@@ -1,28 +1,18 @@
 package rvt;
 
-import java.util.Scanner;
-
 public class App {
     public static void main(String[] args) {
-        Statistics statistics = new Statistics();
-        Statistics statistics_odd = new Statistics();
-        Statistics statistics_even = new Statistics();
-        Scanner scanner = new Scanner(System.in);
-
-        int input = Integer.valueOf(scanner.nextLine());
-        while (input != -1) {
-            if (input % 2 == 0) {
-                statistics_even.addNumber(input);
-            }
-            else {
-                statistics_odd.addNumber(input);
-            }
-            statistics.addNumber(input);
-            input = Integer.valueOf(scanner.nextLine());
-        }
-        System.out.println("Count: " + statistics.getCount());
-        System.out.println("Sum: " + statistics.sum() + "\nOdd sum: " + statistics_odd.sum() + "\nEven sum: " + statistics_even.sum());
-        System.out.println("Average: " + statistics.average());
-
+        PaymentCard paulsCard = new PaymentCard(20);
+        PaymentCard mattsCard = new PaymentCard(30);
+        paulsCard.eatHeartily();
+        mattsCard.eatAffordably();
+        System.out.println(String.format("Paul: %s\nMatt: %s", paulsCard.toString(), mattsCard.toString()));
+        paulsCard.addMoney(20);
+        mattsCard.eatHeartily();
+        System.out.println(String.format("Paul: %s\nMatt: %s", paulsCard.toString(), mattsCard.toString()));
+        paulsCard.eatAffordably();
+        paulsCard.eatAffordably();
+        mattsCard.addMoney(50);
+        System.out.println(String.format("Paul: %s\nMatt: %s", paulsCard.toString(), mattsCard.toString()));
     }
 }
