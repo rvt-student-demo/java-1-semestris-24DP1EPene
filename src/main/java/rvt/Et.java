@@ -2,7 +2,7 @@ package rvt;
 
 import java.util.Scanner;
 
-class Custom_input {
+class Et {
     private final Scanner scanner = new Scanner(System.in);
 
     String input(String text) {
