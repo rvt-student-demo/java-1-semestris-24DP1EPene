@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Et et = new Et();
-        ex_8(et);
+        ex_4(et);
     }
     public static void ex_1(Et et) {
             String name = et.input("Enter your name: ").trim();
@@ -47,7 +47,7 @@ public class App {
     }
 
     public static void ex_4(Et et) {
-        int DISPLAY_LENGTH = 4; // Doesn't work with ood numbers, because sections are exactly 2 character long.
+        int DISPLAY_LENGTH = 4; // Has to be able to cleanly divisible by section length.
 
         String cook_time = et.input("Enter the cook time: ");
         int cook_time_len = cook_time.length();
@@ -97,23 +97,52 @@ public class App {
     }
 
     public static void ex_6(Et et) {
-        // Upgrade this program later at school.
         try {
             Scanner scanner = new Scanner(Paths.get(et.input("Enter the name of the file: ")));
-            boolean multiline_comment = false;
-
+            boolean multiline_comment = false; String multiline_comment_content = "";
+            int multiline_comment_index_end = -1; int start_value;
+    
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                if (line.startsWith("/*")) {
-                    multiline_comment = true;
+                int comments_index = line.indexOf("//");
+                int multiline_comment_index = line.indexOf("/*");
+
+                // One line comment section
+
+                if (comments_index != -1) {
+                    if (comments_index > 0) {
+                        start_value = comments_index - 1;
+                    }
+                    else {
+                        start_value = comments_index;
+                    }
+                    if (! line.substring(start_value, comments_index).contains("\"")) {
+                        System.out.println(line.substring(comments_index));
+                    }
                 }
-                if (line.startsWith("*/")) {
+
+                // Multi line comment section
+
+                if (multiline_comment_index != -1) {
+                    if (multiline_comment_index > 0) {
+                        start_value = multiline_comment_index - 1;
+                    }
+                    else {
+                        start_value = multiline_comment_index;
+                    }
+                    if (! line.substring(start_value, multiline_comment_index).contains("\"")) {
+                        multiline_comment = true;
+                    }
+                }
+                if (multiline_comment) {
+                    multiline_comment_index_end = line.indexOf("*/");
+                    multiline_comment_content += multiline_comment_index_end == -1 ? line + "\n" : line.substring(0, multiline_comment_index_end);
+                }
+                if (multiline_comment_index_end != -1) {
+                    System.out.print(multiline_comment_content);
+                    multiline_comment_content = "";
                     multiline_comment = false;
                 }
-                if (line.startsWith("//") || multiline_comment) {
-                    System.out.println(line);
-                }
-         
             }
             scanner.close();
         }
@@ -168,7 +197,7 @@ public class App {
         String input = et.input("Enter you word: ");
 
         int input_len = input.length();
-        int max_iterations = (input_len / 2) + (input_len % 2 == 1 ? 1 : 0); // To now waster resources recalculating it every time.
+        int max_iterations = (input_len / 2) + (input_len % 2 == 1 ? 1 : 0); // To now waste resources recalculating it every time.
         for (int i = 0; i < max_iterations; i++) {
             System.out.println(" ".repeat(i) + input.substring(i, input_len - i) + " ".repeat(i));
         }

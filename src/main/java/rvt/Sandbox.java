@@ -2,6 +2,8 @@ package rvt;
 
 public class Sandbox {
     public static void main(String[] args) {
-        System.out.println("a".codePointAt(0));
+        String x = "Hello";
+        String y = x;
+        System.out.println(x + " " + y);
     }
 }
